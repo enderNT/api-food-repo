@@ -48,6 +48,8 @@ typings/
 *.tsbuildinfo
 
 # Optional npm cache directory
+**/.npmrc
+.npmrc
 .npm
 
 # Optional eslint cache
@@ -105,3 +107,7 @@ dist
 
 # package-lock.json
 package-lock.json
+
+#env
+**/env
+**/.env
