@@ -12,17 +12,25 @@
 //               \  .-\__  '-'  ___/-. /
 //             ___'. .'  /--.--\  `. .'___
 //          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//         | | :  `- \`.`\ _ /`.`/ - ` : | |
 //         \  \ `_.   \_ __\ /__ _/   .-` /  /
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
 
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
-});
+const server = require('./src/app.js')
+const { sequelize } = require('./src/db/models/index.js')
+require('dotenv').config()
+
+const { PORT_APP } = process.env || 4001
+
+server.listen(`${PORT_APP}`, async () => {
+  try {
+    await sequelize.sync({ force: true })
+    console.log(`App is running on port: ${PORT_APP}`)
+  } catch (error) {
+    console.clear()
+    console.error('Something is wrong...')
+    throw new Error (error)
+  }
+})
