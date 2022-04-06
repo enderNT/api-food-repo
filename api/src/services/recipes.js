@@ -1,10 +1,12 @@
+const { Op } = require('sequelize')
+
 const { Recipes } = require('../db/models/index.js').sequelize.models
 
 module.exports = {
-  getAllRecipes: async (ordered, page=1) => {
+  async getAllRecipes(ordered, page){
     const {count, rows} = await Recipes.findAndCountAll({ order: [ordered],
       limit: 8,
-      offset: (page-1)*8
+      offset: page
     })
     if(rows.length === 0) {
       return { detail: 'Nothing be found' }
@@ -16,7 +18,7 @@ module.exports = {
       }
     }
   },
-  createRecipe: async (recipe) => {
+  async createRecipe(recipe){
     const { name, summary, instructions,
     image, readyInMinutes, score, healthScore,
     priceServing, servings, diets } = recipe
@@ -25,10 +27,23 @@ module.exports = {
         name, summary, instructions, image, readyInMinutes,
         score, healthScore, priceServing, servings,
       })
+      // const dietsAdded = await recipeCreated.addDiets(diets)
       return recipeCreated
     } catch (error) {
-      const { fields, errors } = error
-      return { Error: `${errors[0].type.toUpperCase()}. Recipe: ${fields.name}, ${errors[0].message}.` }
+      const { errors } = error
+      const { message, path, type, value } = errors[0]
+      return { Error: `${type}`, Message: ` '${path}' ${message} `, Value: value }
+    }
+  },
+  async getByName(name){
+    const { count, rows } = await Recipes.findAndCountAll({ where: { name: { [Op.iRegexp]: `${name}` } } })
+    if(rows.length === 0) {
+      return { detail: 'Nothing be found' }
+    } else {
+      return {
+        results: count,
+        recipes: rows,
+      }
     }
   }
 }

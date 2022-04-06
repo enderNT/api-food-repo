@@ -27,18 +27,37 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         msg: 'it already exists'
       },
+      validate: {
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
+        }
+      }
     },
     image: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: 'The image must be a valid param'
-      }
+        notNull: {
+          msg: 'Cannot be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
+        },
+        isUrl: {
+          msg: 'Must be a valid url from a image'
+        }
+      },
     },
     score: {
       type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
+        isNumeric: {
+          msg: 'Must be a number'
+        },
         min: {
           args: [0],
           msg: 'Canont be less than 0'
@@ -46,6 +65,12 @@ module.exports = (sequelize, DataTypes) => {
         max: {
           args: [10],
           msg: 'Cannont be greater than 10'
+        },
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -63,6 +88,12 @@ module.exports = (sequelize, DataTypes) => {
         max: {
           args: [10],
           msg: 'Cannont be greater than 10'
+        },
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -76,6 +107,12 @@ module.exports = (sequelize, DataTypes) => {
         min: {
           args: [0],
           msg: 'Cannont be less than 0'
+        },
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -83,12 +120,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isNumeric: {
-          msg: 'Must be a number'
+        isInt: {
+          msg: 'Must be a integer number'
         },
         min: {
           args: [0],
           msg: 'Cannont be less than 0'
+        },
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -98,6 +141,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Cannot be null'
+        },
+        
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -111,6 +158,12 @@ module.exports = (sequelize, DataTypes) => {
         min: {
           args: [0],
           msg: 'Cannont be less than 0'
+        },
+        notNull: {
+          msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },
@@ -120,6 +173,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Cannont be null'
+        },
+        notEmpty: {
+          msg: 'Cannont be empty'
         }
       }
     },

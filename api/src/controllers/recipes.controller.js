@@ -1,4 +1,4 @@
-const { getAllRecipes, createRecipe } = require('../services/recipes.js')
+const { getAllRecipes, createRecipe, getByName } = require('../services/recipes.js')
 
 const STATUS = {
   'ok': 200,
@@ -16,22 +16,34 @@ const orders = {
 const orderedDefault=['id', 'ASC']
 
 module.exports = {
-  getRecipes: async (req, res) => {
-    const { page, ordered } = req.body
-    const response = await getAllRecipes(orders[ordered] || orderedDefault, parseInt(page))
+  async getRecipes(req, res) {
+    const { page, ordered, name } = req.query
+    const offset = (parseInt(page || 1)-1)*8
+    const response = !name
+    ? await getAllRecipes(orders[ordered] || orderedDefault, offset, name)
+    : await getByName(name)
     if (response.detail) {
       res.status(STATUS['bad-request']).json(response)
     } else {
       res.status(STATUS['ok']).json(response)
     }
   },
-  createARecipe: async (req, res) => {
+  async createARecipe(req, res){
     const recipe = req.body
-    const response = await createRecipe(recipe)
-    if(response.error) {
-      res.status(STATUS['bad-request']).json(response)
+    if(!Array.isArray(recipe.diets) || recipe.diets.length === 0) {
+      res.status(STATUS['bad-request']).json({ Error: 'Diets its necessary' })
     } else {
-      res.status(STATUS['created']).json(response)
+      const check = recipe.diets.every((x) => typeof x === 'number' )
+      if (!check) {
+        res.status(STATUS['bad-request']).json({ Error: 'Diets must be a number of arrays' })
+      } else {
+        const response = await createRecipe(recipe)
+        if(response.Error) {
+          res.status(STATUS['bad-request']).json(response)
+        } else {
+          res.status(STATUS['created']).json(response)
+        }
+      }
     }
   }
 }

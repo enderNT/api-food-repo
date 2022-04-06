@@ -26,7 +26,7 @@ const { PORT_APP } = process.env || 4001
 
 server.listen(`${PORT_APP}`, async () => {
   try {
-    await sequelize.sync({ force: true })
+    await sequelize.authenticate()
     console.log(`App is running on port: ${PORT_APP}`)
   } catch (error) {
     console.clear()

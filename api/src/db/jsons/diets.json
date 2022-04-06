@@ -1,0 +1,23 @@
+[
+  {"id": 1, "name": "omnivore"},
+  {"id": 2, "name": "pescetarian"},
+  {"id": 3, "name": "vegetarian"},
+  {"id": 4, "name": "ovo vegetarian"},
+  {"id": 5, "name": "lacto vegetarian"},
+  {"id": 6, "name": "vegan"},
+  {"id": 7, "name": "frutarian"},
+  {"id": 8, "name": "gluten free"},
+  {"id": 9, "name": "ketogenic"},
+  {"id": 10, "name": "palelo"},
+  {"id": 11, "name": "primal"},
+  {"id": 12, "name": "low fodmap"},
+  {"id": 13, "name": "whole 30"},
+  {"id": 14, "name": "dairy free"},
+  {"id": 15, "name": "lacto ovo vegetarian"},
+  {"id": 16, "name": "unkNown"},
+  {"id": 16, "name": "rica"},
+  {"id": 17, "name": "delicious"},
+  {"id": 18, "name": "for 4 person"},
+  {"id": 19, "name": "forKids"},
+  {"id": 20, "name": "familyFriendly"}
+]
