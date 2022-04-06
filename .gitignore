@@ -111,3 +111,5 @@ package-lock.json
 #env
 **/env
 **/.env
+
+**/jsons
