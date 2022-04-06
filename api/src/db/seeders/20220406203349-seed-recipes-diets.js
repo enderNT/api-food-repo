@@ -1,4 +1,5 @@
-'use strict';
+'use strict'
+const recipes_diets = require('../jsons/recipes_diets copy.json')
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -9,8 +10,9 @@ module.exports = {
      * await queryInterface.bulkInsert('People', [{
      *   name: 'John Doe',
      *   isBetaMember: false
-     * }], {});
+     * }], {})
     */
+      await queryInterface.bulkInsert('RECIPEs_DIETs', recipes_diets)
   },
 
   async down (queryInterface, Sequelize) {
@@ -20,5 +22,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+      await queryInterface.bulkInsert('RECIPEs_DIETs', null, {})
   }
-};
+}

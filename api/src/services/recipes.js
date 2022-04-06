@@ -27,8 +27,9 @@ module.exports = {
         name, summary, instructions, image, readyInMinutes,
         score, healthScore, priceServing, servings,
       })
-      // const dietsAdded = await recipeCreated.addDiets(diets)
-      return recipeCreated
+      await recipeCreated.addDiets(diets)
+      const resultDietsI = await recipeCreated.getDiets()
+      return { ...recipeCreated.toJSON(), diets: resultDietsI }
     } catch (error) {
       const { errors } = error
       const { message, path, type, value } = errors[0]

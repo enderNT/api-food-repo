@@ -15,9 +15,16 @@
   {"id": 14, "name": "dairy free"},
   {"id": 15, "name": "lacto ovo vegetarian"},
   {"id": 16, "name": "unkNown"},
-  {"id": 16, "name": "rica"},
-  {"id": 17, "name": "delicious"},
-  {"id": 18, "name": "for 4 person"},
-  {"id": 19, "name": "forKids"},
-  {"id": 20, "name": "familyFriendly"}
+  {"id": 17, "name": "rica"},
+  {"id": 18, "name": "delicious"},
+  {"id": 19, "name": "for 4 person"},
+  {"id": 20, "name": "forKids"},
+  {"id": 21, "name": "familyFriendly"},
+  {"id": 22, "name": "muy rica"},
+  {"id": 23, "name": "deliciosa"},
+  {"id": 24, "name": "para todos"},
+  {"id": 25, "name": "grasosa"},
+  {"id": 26, "name": "sana"},
+  {"id": 27, "name": "excelente"},
+  {"id": 28, "name": "muy buena"}
 ]
