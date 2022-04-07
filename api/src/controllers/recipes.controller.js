@@ -52,6 +52,10 @@ module.exports = {
   async recipeDetailed(req, res){
     const { id } = req.params
     const response = await getDetail(parseInt(id))
-    res.status(202).json(response)
+    if (!response) {
+      res.status(STATUS['bad-request']).json(response)
+    } else {
+      res.status(STATUS['ok']).json(response)
+    }
   }
 }

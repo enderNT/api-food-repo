@@ -53,6 +53,10 @@ module.exports = {
   },
   async getDetail(id){
     const recipe = await Recipes.findByPk(id, { include: Diets })
-    return recipe
+    if (!recipe) {
+      return { detail: 'Nothing be found' }
+    } else {
+      return recipe
+    }
   }
 }
