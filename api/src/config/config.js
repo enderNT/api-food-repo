@@ -16,12 +16,25 @@ module.exports = {
     database: `${DB_NAME}`,
     host: `${DB_HOST}`,
     dialect: `${DB_DIALECT}`,
+    ssl: 'true',
     port: 5432,
     logging: false,
+    pool: {
+      max: 3,
+      min: 1,
+      idle: 10000,   
+    },
     define: {
       timestamps: false,
       freezeTableName: true,
-    }
+    },
+    dialectOptions: {
+       ssl: {
+      	       require: 'true',
+	       rejectUnauthorized: false,
+       },
+       keepAlive: true,
+     },
   },
   "test": {
     username: `${DB_USERNAME}`,
