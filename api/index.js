@@ -27,7 +27,7 @@ require('dotenv').config()
 server.listen(process.env.PORT, async () => {
   try {
     await sequelize.authenticate()
-    console.log(`App is running on port: ${PORT_APP}`)
+    console.log(`App is running on port: ${process.env.PORT}`)
   } catch (error) {
     console.clear()
     console.error('Something is wrong...')
