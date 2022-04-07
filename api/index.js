@@ -22,9 +22,9 @@ const server = require('./src/app.js')
 const { sequelize } = require('./src/db/models/index.js')
 require('dotenv').config()
 
-const { PORT_APP } = process.env || 4001
+//const { PORT_APP } = process.env || 4001
 
-server.listen(`${PORT_APP}`, async () => {
+server.listen(`${PORT_APP || process.env.PORT}`, async () => {
   try {
     await sequelize.authenticate()
     console.log(`App is running on port: ${PORT_APP}`)
