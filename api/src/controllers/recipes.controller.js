@@ -1,4 +1,7 @@
-const { getAllRecipes, createRecipe, getByName } = require('../services/recipes.js')
+const {
+  getAllRecipes, createRecipe, getByName,
+  getDetail
+} = require('../services/recipes.js')
 
 const STATUS = {
   'ok': 200,
@@ -45,5 +48,10 @@ module.exports = {
         }
       }
     }
+  },
+  async recipeDetailed(req, res){
+    const { id } = req.params
+    const response = await getDetail(parseInt(id))
+    res.status(202).json(response)
   }
 }
